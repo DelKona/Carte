@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ma carte Leaflet avec une couche GeoJSON</title>
+    <!-- Chargement de Leaflet CSS -->
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/DelKona/Carte/main/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  </head>
+  <body>
+    <!-- Conteneur de la carte -->
+    <div id="map" style="height: 500px; width: 500px;"></div>
+
+    <!-- Chargement de Leaflet JS -->
+    <script src="https://raw.githubusercontent.com/DelKona/Carte/main/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+    <script>
+      // Initialisation de la carte
+      var map = L.map('map').setView([48.85, 2.35], 13);
+
+      // Ajout de la couche de tuiles OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Chargement de la couche GeoJSON à partir de l'URL
+      var geojsonLayer = L.geoJSON.layer("https://raw.githubusercontent.com/DelKona/Carte/main/dist/creme.geojson");
+
+      // Ajout de la couche GeoJSON à la carte
+      geojsonLayer.addTo(map);
+    </script>
+  </body>
+</html>
